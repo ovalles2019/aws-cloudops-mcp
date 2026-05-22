@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AWS CloudOps MCP</title>
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <div class="bg-grid" aria-hidden="true"></div>
+    <div class="wrap">
+      <header>
+        <p class="eyebrow" id="eyebrow">Cloud operations</p>
+        <h1>AWS CloudOps inventory</h1>
+        <p class="sub" id="tagline">Read-focused MCP tools for EC2, CloudWatch, ELB, Lambda, and S3.</p>
+        <p id="demo-banner" class="demo-banner" style="display: none">
+          Portfolio demo — synthetic account and resources only. Real MCP tools use your AWS credentials locally.
+        </p>
+      </header>
+
+      <p id="err-banner" class="err" style="display: none"></p>
+
+      <div class="card" style="margin-bottom: 1rem">
+        <h2>Caller identity</h2>
+        <div class="identity">
+          <p><span class="label">Account</span> <span id="id-account">—</span></p>
+          <p><span class="label">Region</span> <span id="id-region">—</span></p>
+          <p class="arn"><span class="label">ARN</span> <span id="id-arn">—</span></p>
+        </div>
+        <div class="metrics" style="margin-top: 1rem">
+          <div class="metric">
+            <div class="label">EC2 running</div>
+            <div class="value" id="m-ec2">—</div>
+          </div>
+          <div class="metric">
+            <div class="label">Alarms firing</div>
+            <div class="value alarm" id="m-alarms">—</div>
+          </div>
+          <div class="metric">
+            <div class="label">Load balancers</div>
+            <div class="value" id="m-alb">—</div>
+          </div>
+          <div class="metric">
+            <div class="label">Lambda</div>
+            <div class="value" id="m-lambda">—</div>
+          </div>
+        </div>
+        <div style="margin-top: 1rem; display: flex; justify-content: space-between; align-items: center">
+          <span class="muted" id="status" style="font-size: 0.8rem"></span>
+          <button type="button" class="ghost" id="btn-refresh">Refresh</button>
+        </div>
+      </div>
+
+      <div class="grid">
+        <div class="card">
+          <h2>EC2 instances</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Type</th>
+                <th>State</th>
+                <th>AZ</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-ec2"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>CloudWatch alarms</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Alarm</th>
+                <th>State</th>
+                <th>Metric</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-alarms"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Load balancers</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>DNS</th>
+                <th>Type</th>
+                <th>Scheme</th>
+                <th>State</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-alb"></tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h2>Lambda &amp; S3</h2>
+          <p class="section-label">Functions</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Runtime</th>
+                <th>Memory</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-lambda"></tbody>
+          </table>
+          <p class="section-label" style="margin-top: 1rem">Buckets</p>
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Created</th>
+              </tr>
+            </thead>
+            <tbody id="tbl-s3"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="footer">Same read-only tool surface as the MCP server. Wire locally with AWS_PROFILE / AWS_REGION.</p>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

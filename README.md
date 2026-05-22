@@ -1,5 +1,7 @@
 # AWS CloudOps MCP Server
 
+[![Live demo](https://img.shields.io/badge/demo-live-ff9900?style=flat-square)](https://aws-cloudops-demo.onrender.com/)
+
 Model Context Protocol (**MCP**) server aimed at **Cloud Engineers**: expose common **read-only** operational queries across AWS APIs via **boto3**, so assistants can assist with triage, inventory, and alarm inspection inside MCP-aware clients (Cursor, Claude Code, and similar).
 
 ## What it exposes
@@ -58,6 +60,28 @@ python -m aws_cloudops_mcp.server
 ```
 
 Prefer **`AWS_*` env vars** in MCP configs rather than baking profiles into code.
+
+## Web dashboard (local)
+
+Browse a synthetic ops snapshot (same shape as MCP tool output):
+
+```bash
+pip install -e ".[web]"
+AWS_CLOUDOPS_DEMO=1 aws-cloudops-ui
+# http://127.0.0.1:8846
+```
+
+Override host/port with `AWS_CLOUDOPS_UI_HOST` and `AWS_CLOUDOPS_UI_PORT`.
+
+## Live demo (portfolio)
+
+Public dashboard with **fixture data only** — no AWS credentials on the host:
+
+**[aws-cloudops-demo.onrender.com](https://aws-cloudops-demo.onrender.com/)**
+
+Deploy via Render Blueprint (`render.yaml` + `Dockerfile`). Set `AWS_CLOUDOPS_DEMO=1`. Health check: `GET /health`.
+
+Real MCP tools still call **your** AWS account when run locally in Cursor.
 
 ## Suggested IAM (read-only baseline)
 

@@ -14,8 +14,13 @@ dependencies = [
 
 [project.scripts]
 aws-cloudops-mcp = "aws_cloudops_mcp.server:main"
+aws-cloudops-ui = "aws_cloudops_mcp.web.__main__:main"
 
 [project.optional-dependencies]
+web = [
+    "starlette>=0.37.0",
+    "uvicorn[standard]>=0.30.0",
+]
 dev = ["ruff>=0.8.0"]
 
 [build-system]

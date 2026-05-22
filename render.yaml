@@ -1,0 +1,10 @@
+# Deploy portfolio dashboard on Render — connect repo → New Blueprint
+services:
+  - type: web
+    name: aws-cloudops-demo
+    runtime: docker
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: AWS_CLOUDOPS_DEMO
+        value: "1"
